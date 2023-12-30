@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Function library example</title>
+  <style>
+    input {
+      font-size: 2em;
+      margin: 10px 1px 0;
+    }
+  </style>
+  </head>
+<body>
+  <script>
+    //Takes a string and returns that string with only the first letter capitalized. 
+    //It can take strings that are lowercase, UPPERCASE or BoTh.
+    function capitaliseFirstLetter(word) {
+        if (typeof (word[0]) === 'string') {
+            firstLetter = word[0].toUpperCase() + word.slice(1)
+            return firstLetter;
+        }
+        else {
+            console.log('The first character of the value you enter must not be a number');
+        };
+    };
+
+    console.log(capitaliseFirstLetter(123));
+  </script>
+</body>
+</html>
