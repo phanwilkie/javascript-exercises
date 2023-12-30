@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Guest List</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+  <!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
+  <!-- <link rel="icon" href="favicon.png"> -->
+
+  <script>
+    
+    const people = ['Chris', 'Anne', 'Colin', 'Terri', 'Phil', 'Lola', 'Sam', 'Kay', 'Bruce'];
+
+
+
+    // const admitted = document.querySelector('.admitted');
+    // const refused = document.querySelector('.refused');
+    // admitted.textContent = 'Admit: ';
+    // refused.textContent = 'Refuse: ';
+
+
+    function guestList() {
+        for (const person of people) {
+            if (person == 'Phil' || person == 'Lola') {
+                console.log('Refuse: ' + person);
+            } else {
+                console.log('Admit: ' + person);
+            };
+        };
+
+    };
+
+
+
+  </script>
+</head>
+<body>
+  <h1>Who's coming for dinner?</h1>
+  <div class="buttons-container">
+        <button type="button" onclick="guestList()" class="">Find out now!</button>
+  </div>
+  <div class="output"><p></p></div>
+  <div class="para"></div>
+
+</body>
+</html>
