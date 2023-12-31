@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Loop Prompt for Value > 100</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+  <!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
+  <!-- <link rel="icon" href="favicon.png"> -->
+
+  <script>
+    function greaterOneHundred() {
+        i = 0;
+        while (i != 100) {
+            let number = prompt('Enter a number');
+            if (number > 100 || !number) {
+                break;
+            }
+        }
+    };
+
+
+  </script>
+</head>
+<body>
+  <h1>Enter number greater than 100</h1>
+  <div class="buttons-container">
+        <button type="button" onclick="greaterOneHundred()" class="">Test It Now!</button>
+  </div>
+  <div class="output"><p></p></div>
+  <div class="para"></div>
+
+</body>
+</html>

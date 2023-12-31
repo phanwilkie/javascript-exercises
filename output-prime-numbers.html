@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prime Numbers</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+  <!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
+  <!-- <link rel="icon" href="favicon.png"> -->
+
+  <script>
+
+    let userNumber = Number(prompt('Enter a number', 17));
+    parseNumbers(userNumber);
+
+    function parseNumbers() { //iterate from the specified input all the way to 0
+        for (let i = userNumber; i >= 0 ;i--) {
+            isPrime(i);
+            if (isPrime(i) === true) {
+                console.log(i);
+            }
+        }
+    };
+
+    function isPrime(number) { //test each number for prime status
+        if (number === 2) {
+            return true;
+        }
+        else if (number === 1 || number === 0) {
+            return false;
+        }
+        else {
+                for (let i = 2; i <= Math.sqrt(number); i++) {
+                    if (number % i === 0) {
+                        return false;
+                    };
+                }
+            return true;
+            };
+    };   
+
+  </script>
+</head>
+<body>
+  <h1>Enter number a number</h1>
+  <p>This will output all the prime numbers up to the number you've entered.</p>
+  <div class="buttons-container">
+        <!-- <button type="button" onclick="isPrime()" class="">Test It Now!</button> -->
+  </div>
+  <div class="output"><p></p></div>
+  <div class="para"></div>
+
+</body>
+</html>
