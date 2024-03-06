@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Object-oriented JavaScript example</title>
+  </head>
+
+  <body>
+    <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
+    <div class="newDiv"></div>
+
+    
+    <script>
+
+// const person = {
+//         name: ["Bob", "Smith"],
+//         age: 32,
+//         bio() {console.log(`${this.name[0]} ${this.name[1]} is ${this.age} years old.`);},
+//         introduceSelf() {console.log(`Hi! I'm ${this.name[0]}.`);},
+//         };
+
+// function logProperty(propertyName) {
+//   console.log(person[propertyName]);
+// }
+
+//Object constructor
+function Person(name) {
+  this.name = name;
+  this.introduceSelf = function () {
+    console.log(`Hi! I'm ${this.name}.`);
+  };
+}
+
+
+//EXERCISE 2 BAND INFO OBJECT
+let bandInfo;
+
+// Put your code here
+band = {
+    name: "Foo Fighters",
+    nationality: "the US",
+    genre: "rock",
+    members: 4,
+    formed: 1999,
+    split: false,
+    albums: [
+             {name: "One", released: 1999,},
+             {name: "Two", released: 2000,},
+             {name: "Three", released: 2001,},
+            ],
+
+};
+
+bandInfo = `${band.name} - a ${band.genre} band hailing from ${band.nationality} formed in ${band.formed}.`;
+
+
+// Don't edit the code below here
+const newDiv = document.querySelector('.newDiv');
+let para1 = document.createElement('p');
+para1.textContent = bandInfo;
+newDiv.appendChild(para1);
+    
+//Exercise 3
+// const cat = {
+//   name : 'Bertie',
+//   breed : 'Cymric',
+//   color : 'white',
+//   greeting: function() {
+//     console.log('Meow!');
+//   }
+// }
+
+// // Put your code here
+// const catName = cat["name"];
+// cat.greeting();
+// cat["color"] = 'Black';
+
+
+// // Don't edit the code below here
+
+// let para2 = document.createElement('p');
+// let para3 = document.createElement('p');
+
+// para2.textContent = `The cat's name is ${ catName }.`;
+// para3.textContent = `The cat's color is ${ cat.color }.`;
+// newDiv.appendChild(para2);
+// newDiv.appendChild(para3);
+
+
+//exercise 3
+// const cat = {
+//   name : 'Bertie',
+//   breed : 'Cymric',
+//   color : 'white',
+//   greeting: function() {
+//     console.log(`Hello, said ${this.name}, the ${this.breed}`);
+//   }
+// }
+
+// const cat2 = {
+//   name : 'Simpson',
+//   breed : 'Tabby',
+//   color : 'Grey/White',
+//   greeting: function() {
+//     console.log(`Hello, said ${this.name}, the ${this.breed}`);
+//   }
+// }
+
+//exercise 4
+function Cat(name, breed, color) {
+  this.name = name;
+  this.breed = breed;
+  this.color = color;
+  this.greeting = function () {
+    console.log(`Hello, said ${this.name}, the ${this.breed}`);
+  };
+}
+
+const cat = new Cat("Bertie", "Cymric", "white");
+const cat2 = new Cat("Elfie", "Afrodite Giant", "gigner");
+const cat3 = new Cat("Rick", "Bhermin", "White/Grey");
+
+</script>
+  </body>
+
+</html>

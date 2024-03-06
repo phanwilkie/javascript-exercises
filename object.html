@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Function library example</title>
+  <style>
+    input {
+      font-size: 2em;
+      margin: 10px 1px 0;
+    }
+  </style>
+  </head>
+<body>
+  <script>
+
+//Exercise 1
+// Create an empty object user. - done
+// Add the property name with the value John. - done
+// Add the property surname with the value Smith. - done
+// Change the value of the name to Pete. - done
+// Remove the property name from the object. - done
+    // let user = new Object();
+
+    // user.name = 'John';
+    // user.surname = 'Smith';
+    // console.log(user)
+
+    // user.name = 'Pete';
+    // delete user.surname;
+    // console.log(user)
+    
+    // let staff = {};
+    // console.log(staff);
+
+// Write the function isEmpty(obj) which returns true if the object has no properties, false otherwise.
+
+//Exercise 2
+function isEmpty(obj) {
+  for (let key in obj) {
+    // if the loop has started, there is a property
+    return false;
+  }
+  return true;
+}
+
+//Exercise 3
+let salaries = {
+  John: 100,
+  Ann: 160,
+  Pete: 130
+};
+
+let total = 0;
+for (let key in salaries) {
+    total += salaries[key];
+}
+
+// Exercise 4
+// before the call
+let menu = {
+  width: 200,
+  height: 300,
+  title: "My menu"
+};
+
+multiplyNumeric(menu);
+
+// after the call
+// menu = {
+//   width: 400,
+//   height: 600,
+//   title: "My menu"
+// };
+
+function multiplyNumeric(object) {
+    object.width *= 2;
+    object.height *= 2;
+    console.log(menu);
+
+};
+
+  </script>
+</body>
+</html>
