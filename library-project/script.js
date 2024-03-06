@@ -11,12 +11,12 @@ function Book(title, author, pages, readStatus) {
     this.author = author;
     this.pages = pages;
     this.readStatus = readStatus;
-    this.bookInfo = function() {
-        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.readStatus}`;
-    }
+    // this.bookInfo = function() {
+    //     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.readStatus}`;
+    //}
 }
 
-//add book to library
+//show book to library
 function addBookToLibrary() {
     const bookListTable = document.createElement('table');
     bookListTable.setAttribute("id", "booktable");
@@ -72,21 +72,32 @@ document.addEventListener("keydown", function (e) {
   });
 
 
-//PUSH FORM VALUES TO ARRAY
+//add new book
 const form = document.querySelector('form');
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     const fd = new FormData(form);
     const obj = Object.fromEntries(fd);
-    myLibrary.push(obj);
+    //maninpute the object property
+    if (obj.readStatus === 'on') {
+        obj.readStatus = true;
+    }
+    else {
+        obj.readStatus = false;
+    };
+    const newBook = obj;
+    myLibrary.push(newBook);
     closeModal();
     bookTable = document.querySelector("#booktable");
     bookTable.remove();
     addBookToLibrary();
+    form.reset();
+    console.log(obj);
 })
 
 addBookToLibrary();
 console.table(myLibrary);
 
-//TO DO CLEAR THE TABLE WITH EVENT LISTENER AND RECONSTRUCT IT
+//ADD REMOVE BUTTON ON EACH BOOK
+//READ OR NOT READ
