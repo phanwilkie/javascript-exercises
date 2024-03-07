@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 let id = 3;
 
 myLibrary.push(
@@ -48,10 +48,12 @@ function addBookToLibrary() {
         tdOptions.appendChild(readBookBtn);
         readBookBtn.appendChild(btnTxtRead);
         readBookBtn.setAttribute("class", "readBookBtn");
+        readBookBtn.setAttribute("id", "readBookBtn-" + book.id);
  
         tdOptions.appendChild(deleteBookBtn);
         deleteBookBtn.appendChild(btnTxt);
         deleteBookBtn.setAttribute("class", "deleteBookBtn");
+        deleteBookBtn.setAttribute("id", "deleteBookBtn-" + book.id);
 
         newRow.appendChild(tdId);
         newRow.appendChild(tdTitle);
@@ -67,15 +69,6 @@ function addBookToLibrary() {
     target.appendChild(bookListTable);
 }
 
-//ADD REMOVE BUTTON ON EACH BOOK
-function deleteBook() {
-
-}
-
-//READ OR NOT READ
-function readBook() {
-
-}
 
 //MODAL INTERACTION
 const modal = document.querySelector(".modal");
@@ -113,7 +106,8 @@ form.addEventListener('submit', (e) => {
     e.preventDefault();
     const fd = new FormData(form);
     const obj = Object.fromEntries(fd);
-    //maninpute the object property
+    //manipulate the object property
+    obj.id = Number(obj.id);
     if (obj.readStatus === 'on') {
         obj.readStatus = true;
     }
@@ -130,11 +124,44 @@ form.addEventListener('submit', (e) => {
     bookTable = document.querySelector("#booktable");
     bookTable.remove();
     addBookToLibrary();
+    deleteBtnAddEventLister();
 })
 
-
-
-
+//INITIALISATION
 addBookToLibrary();
+deleteBtnAddEventLister()        
 console.table(myLibrary);
 
+//READ OR NOT READ
+function readBook() {
+    
+}
+
+//ADD REMOVE BUTTON ON EACH BOOK
+function deleteBook(id) {
+    //delete object with matching id from array
+    const deleteConfirmation = confirm('Are you sure you want to delete this book?')
+    if (deleteConfirmation) {
+        const newLibrary = myLibrary.filter(object => {
+            return object.id !== id;
+        })
+        myLibrary = newLibrary;
+        
+        //re-render table
+        bookTable = document.querySelector("#booktable");
+        bookTable.remove();
+        addBookToLibrary();
+        deleteBtnAddEventLister()        
+    }
+}
+
+function deleteBtnAddEventLister() {
+    let deleteBookAllBtns = document.querySelectorAll('.deleteBookBtn');
+    deleteBookAllBtns.forEach(btn => {
+        btn.addEventListener("click", function() {
+            const buttonId = this.getAttribute('id');
+            const matchingID = Number(buttonId.split('-')[1]);
+            deleteBook(matchingID);
+        })
+    })
+}
