@@ -125,17 +125,8 @@ form.addEventListener('submit', (e) => {
     bookTable.remove();
     addBookToLibrary();
     deleteBtnAddEventLister();
+    readBtnAddEventListener();
 })
-
-//INITIALISATION
-addBookToLibrary();
-deleteBtnAddEventLister()        
-console.table(myLibrary);
-
-//READ OR NOT READ
-function readBook() {
-    
-}
 
 //ADD REMOVE BUTTON ON EACH BOOK
 function deleteBook(id) {
@@ -151,12 +142,13 @@ function deleteBook(id) {
         bookTable = document.querySelector("#booktable");
         bookTable.remove();
         addBookToLibrary();
-        deleteBtnAddEventLister()        
+        deleteBtnAddEventLister()  
+        readBtnAddEventListener();      
     }
 }
 
 function deleteBtnAddEventLister() {
-    let deleteBookAllBtns = document.querySelectorAll('.deleteBookBtn');
+    const deleteBookAllBtns = document.querySelectorAll('.deleteBookBtn');
     deleteBookAllBtns.forEach(btn => {
         btn.addEventListener("click", function() {
             const buttonId = this.getAttribute('id');
@@ -165,3 +157,27 @@ function deleteBtnAddEventLister() {
         })
     })
 }
+
+//READ OR NOT READ
+function readUnreadBook(id) {
+    alert(`Book ${id} has been read`);
+}
+
+function readBtnAddEventListener() {
+    const readBookAllBtns = document.querySelectorAll('.readBookBtn');
+    console.log(readBookAllBtns);
+    readBookAllBtns.forEach(btn => {
+        btn.addEventListener("click", function() {
+            const buttonId = this.getAttribute('id');
+            console.log(buttonId);
+            const matchingID = Number(buttonId.split('-')[1]);
+            readUnreadBook(matchingID);
+        })
+    })
+}
+
+//INITIALISATION
+addBookToLibrary();
+deleteBtnAddEventLister();
+readBtnAddEventListener();
+console.table(myLibrary);
