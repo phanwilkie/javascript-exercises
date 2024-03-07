@@ -13,9 +13,6 @@ function Book(title, author, pages, readStatus) {
     this.author = author;
     this.pages = pages;
     this.readStatus = readStatus;
-    // this.bookInfo = function() {
-    //     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.readStatus}`;
-    //}
 }
 
 //show book to library
@@ -31,8 +28,6 @@ function addBookToLibrary() {
         const tdPages = document.createElement("td");
         const tdRead = document.createElement("td");
         const tdOptions = document.createElement("td");
-        // const readCheckBoxLabel = document.createElement("label");
-        // const readCheckBoxLabelBR = document.createElement("br");
         const readBookBtn = document.createElement("button");
         const btnTxtRead = document.createTextNode("Read / Unread");
         const deleteBookBtn = document.createElement("button");
@@ -44,7 +39,7 @@ function addBookToLibrary() {
         tdPages.textContent = book.page;
         tdRead.textContent = book.readStatus;
         
-        //Add checkbox option to table cell
+        //Add action buttons to table cell
         tdOptions.appendChild(readBookBtn);
         readBookBtn.appendChild(btnTxtRead);
         readBookBtn.setAttribute("class", "readBookBtn");
@@ -64,13 +59,11 @@ function addBookToLibrary() {
 
         bookListTable.appendChild(newRow);
     }
-
     const target = document.querySelector(".target");
     target.appendChild(bookListTable);
 }
 
-
-//MODAL INTERACTION
+//OPEN NEW BOOK MODAL INTERACTION
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const openModalBtn = document.querySelector(".btn-open");
@@ -98,8 +91,7 @@ document.addEventListener("keydown", function (e) {
     }
   });
 
-
-//add new book
+//ADD NEW BOOK TO ARRAY OF OBJECTS VIA FORM SUBMISSION
 const form = document.querySelector('form');
 
 form.addEventListener('submit', (e) => {
@@ -118,17 +110,15 @@ form.addEventListener('submit', (e) => {
     console.log(obj);
     myLibrary.push(newBook);
     id = idField.value;
+    
     form.reset();
     closeModal();
-    
-    bookTable = document.querySelector("#booktable");
-    bookTable.remove();
-    addBookToLibrary();
-    deleteBtnAddEventLister();
-    readBtnAddEventListener();
+    clearTable()
+    init();
+
 })
 
-//ADD REMOVE BUTTON ON EACH BOOK
+//ADD REMOVE BUTTON AGAINST EACH BOOK
 function deleteBook(id) {
     //delete object with matching id from array
     const deleteConfirmation = confirm('Are you sure you want to delete this book?')
@@ -138,12 +128,8 @@ function deleteBook(id) {
         })
         myLibrary = newLibrary;
         
-        //re-render table
-        bookTable = document.querySelector("#booktable");
-        bookTable.remove();
-        addBookToLibrary();
-        deleteBtnAddEventLister()  
-        readBtnAddEventListener();      
+        clearTable()
+        init();
     }
 }
 
@@ -158,7 +144,7 @@ function deleteBtnAddEventLister() {
     })
 }
 
-//READ OR NOT READ
+//MARK BOOK AS READ/UNREAD
 function readUnreadBook(id) {
     objIndex = myLibrary.findIndex(obj => obj.id === id);
     if (myLibrary[objIndex].readStatus === true) {
@@ -167,14 +153,9 @@ function readUnreadBook(id) {
     else {
         myLibrary[objIndex].readStatus = true;
     }
-    alert(`Book ${id} has been read and the array index is ${objIndex} and the status is now ${myLibrary[objIndex].readStatus}`);
  
-    bookTable = document.querySelector("#booktable");
-    bookTable.remove();
-    
-    addBookToLibrary();
-    deleteBtnAddEventLister()  
-    readBtnAddEventListener();    
+    clearTable()
+    init();
 }
 
 function readBtnAddEventListener() {
@@ -190,7 +171,18 @@ function readBtnAddEventListener() {
     })
 }
 
+//CLEAR TABLE CRUD
+function clearTable() {
+    bookTable = document.querySelector("#booktable");
+    bookTable.remove();
+}
+
+//RE-INITIALISATION FUNCTIONS
+function init() {
+    addBookToLibrary();
+    deleteBtnAddEventLister();
+    readBtnAddEventListener();
+}
+
 //INITIALISATION
-addBookToLibrary();
-deleteBtnAddEventLister();
-readBtnAddEventListener();
+init();
