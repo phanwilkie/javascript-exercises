@@ -160,16 +160,30 @@ function deleteBtnAddEventLister() {
 
 //READ OR NOT READ
 function readUnreadBook(id) {
-    alert(`Book ${id} has been read`);
+    objIndex = myLibrary.findIndex(obj => obj.id === id);
+    if (myLibrary[objIndex].readStatus === true) {
+        myLibrary[objIndex].readStatus = false;
+    }
+    else {
+        myLibrary[objIndex].readStatus = true;
+    }
+    alert(`Book ${id} has been read and the array index is ${objIndex} and the status is now ${myLibrary[objIndex].readStatus}`);
+ 
+    bookTable = document.querySelector("#booktable");
+    bookTable.remove();
+    
+    addBookToLibrary();
+    deleteBtnAddEventLister()  
+    readBtnAddEventListener();    
 }
 
 function readBtnAddEventListener() {
     const readBookAllBtns = document.querySelectorAll('.readBookBtn');
-    console.log(readBookAllBtns);
+    // console.log(readBookAllBtns);
     readBookAllBtns.forEach(btn => {
         btn.addEventListener("click", function() {
             const buttonId = this.getAttribute('id');
-            console.log(buttonId);
+            // console.log(buttonId);
             const matchingID = Number(buttonId.split('-')[1]);
             readUnreadBook(matchingID);
         })
@@ -180,4 +194,3 @@ function readBtnAddEventListener() {
 addBookToLibrary();
 deleteBtnAddEventLister();
 readBtnAddEventListener();
-console.table(myLibrary);
